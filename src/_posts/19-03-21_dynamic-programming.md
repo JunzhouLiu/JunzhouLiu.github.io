@@ -1,12 +1,8 @@
 ---
 title: dynamic-programming note (动态规划专题)
-comments: true
-copyright: true
 date: 2019-03-21 18:39:35
 updated: 2019-03-21 18:39:35
-categories:
 tags:
-description:
 permalink: dp-note
 ---
 昨天在看DP算法，特意开篇文章记录下，加深一下印象。本文围绕著名的01背包展开讨论。

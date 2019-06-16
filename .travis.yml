@@ -1,0 +1,34 @@
+language: node_js
+
+sudo: required
+
+node_js: '10'
+
+branches:
+  only:
+    - hexo
+
+before_install:
+  - export TZ='Asia/Shanghai'
+
+
+install:
+  - npm install vuepress vuepress-theme-meteorlxy
+
+script:
+ 
+  - npm run build
+ 
+  - echo "blog.liujunzhou.top" > dist/CNAME
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  name: $GIT_NAME
+  email: $GIT_EMAIL
+  keep-history: true
+  target-branch: master
+  on:
+    branch: hexo

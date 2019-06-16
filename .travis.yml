@@ -19,7 +19,7 @@ script:
  
   - npm run build
  
-  - echo "blog.liujunzhou.top" > dist/CNAME
+  - echo "liujunzhou.top" > dist/CNAME
 
 deploy:
   provider: pages

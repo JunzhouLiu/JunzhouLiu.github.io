@@ -44,8 +44,7 @@ module.exports = {
       //avatar: 'https://www.meteorlxy.cn/assets/img/avatar.jpg',
       // 或者放置在 .vuepress/public 文件夹，例如 .vuepress/public/img/avatar.jpg
        avatar: '/assets/img/avatar.jpg',
-      
-
+    
       // 社交平台帐号信息
       sns: {
         // Github 帐号和链接
@@ -137,15 +136,15 @@ module.exports = {
 
     // 顶部导航栏内容
     nav: [
-      { text: '首页', link: '/', exact: true },
-      { text: '文章', link: '/posts/', exact: false },
-      { text: '关于', link: '/about/', exact: true },
+      { text: 'Home', link: '/', exact: true },
+      { text: 'Post', link: '/posts/', exact: false },
+      { text: 'About', link: '/about/', exact: true },
     ],
 
     // 评论配置，参考下方 [页面评论] 章节
     comments: {
       owner: 'JunzhouLiu',
-    //  repo: 'blog_comments',
+      repo: 'JunzhouLiu.github.io',
       clientId: 'ae2b63c7fb3ad3707669',
       clientSecret: '37c7d8a87b442d91c674862dd7fc031e7c20ff63',
     },
@@ -163,4 +162,12 @@ module.exports = {
       posts: true,
     },
   },
+  plugins: [
+    [
+      '@vuepress/google-analytics',
+      {
+        'ga': 'UA-130601883-1' // UA-00000000-0
+      }
+    ]
+  ]
 }

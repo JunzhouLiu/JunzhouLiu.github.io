@@ -51,7 +51,7 @@ category: 杂记
 
 *tasks.json*
 
-```
+```json
 {
     "version": "2.0.0",
     "tasks": [

@@ -1,33 +1,25 @@
 language: node_js
-
 sudo: required
-
 node_js: '10'
-
 branches:
   only:
-    - hexo
-
+  - hexo
 before_install:
-  - export TZ='Asia/Shanghai'
-
-
+- openssl aes-256-cbc -K $encrypted_9b2d7e19d83c_key -iv $encrypted_9b2d7e19d83c_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+- export TZ='Asia/Shanghai'
 install:
-  - npm install vuepress vuepress-theme-meteorlxy
-
+- npm install vuepress vuepress-theme-meteorlxy
 script:
- 
-  - npm run build
- 
-  - echo "liujunzhou.top" > dist/CNAME
-
+- npm run build
+- echo "liujunzhou.top" > dist/CNAME
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  github_token: "$GITHUB_TOKEN"
   local_dir: dist
-  name: $GIT_NAME
-  email: $GIT_EMAIL
+  name: "$GIT_NAME"
+  email: "$GIT_EMAIL"
   keep-history: true
   target-branch: master
   on:

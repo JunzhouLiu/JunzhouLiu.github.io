@@ -3,6 +3,7 @@ title: VScode+GCC配置轻量级C++开发环境
 date: 2019-08-05 02:24:31
 tags: 
 category: 杂记
+draft: true
 ---
 
 今天晚上有空，看了一遍[VSCode](https://code.visualstudio.com/docs/cpp/config-mingw)的文档，配置了轻量级的C++开发环境。以后就能愉快的使用Vscode刷题了。

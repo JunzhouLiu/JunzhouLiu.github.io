@@ -37,14 +37,14 @@ module.exports = {
       location: 'XinYang City, China',
 
       // 组织
-     // organization: 'Xi\'an Jiao Tong University',
+      // organization: 'Xi\'an Jiao Tong University',
 
       // 头像
       // 设置为外部链接
       //avatar: 'https://www.meteorlxy.cn/assets/img/avatar.jpg',
       // 或者放置在 .vuepress/public 文件夹，例如 .vuepress/public/img/avatar.jpg
-       avatar: '/assets/img/avatar.jpg',
-    
+      avatar: '/assets/img/avatar.jpg',
+
       // 社交平台帐号信息
       sns: {
         // Github 帐号和链接
@@ -52,67 +52,6 @@ module.exports = {
           account: 'JunzhouLiu',
           link: 'https://github.com/JunzhouLiu',
         },
-/*
-        // Facebook 帐号和链接
-        facebook: {
-          account: 'meteorlxy.cn',
-          link: 'https://www.facebook.com/meteorlxy.cn',
-        },
-
-        // LinkedIn 帐号和链接
-        linkedin: {
-          account: 'meteorlxy',
-          link: 'http://www.linkedin.com/in/meteorlxy',
-        },
-
-        // Twitter 帐号和链接
-        twitter: {
-          account: 'meteorlxy_cn',
-          link: 'https://twitter.com/meteorlxy_cn',
-        },
-
-        // 新浪微博 帐号和链接
-        weibo: {
-          account: '@焦炭君_Meteor',
-          link: 'https://weibo.com/u/2039655434',
-        },
-
-        // 知乎 帐号和链接
-        zhihu: {
-          account: 'meteorlxy.cn',
-          link: 'https://www.zhihu.com/people/meteorlxy.cn',
-        },
-
-        // 豆瓣 帐号和链接
-        douban: {
-          account: '159342708',
-          link: 'https://www.douban.com/people/159342708',
-        },
-
-        // Reddit 帐号和链接
-        reddit: {
-          account: 'meteorlxy',
-          link: 'https://www.reddit.com/user/meteorlxy',
-        },
-
-        // Medium 帐号和链接
-        medium: {
-          account: 'meteorlxy.cn',
-          link: 'https://medium.com/@meteorlxy.cn',
-        },
-
-        // Instagram 帐号和链接
-        instagram: {
-          account: 'meteorlxy.cn',
-          link: 'https://www.instagram.com/meteorlxy.cn',
-        },
-
-        // GitLab 帐号和链接
-        gitlab: {
-          account: 'meteorlxy',
-          link: 'https://gitlab.com/meteorlxy',
-        },
-*/
       },
     },
 
@@ -133,6 +72,13 @@ module.exports = {
 
     // 是否显示文章的最近更新时间
     lastUpdated: true,
+
+
+    footer: {
+      poweredBy: false,
+      poweredByTheme: false,
+      custom: 'Copyright 2018-Junzhou | MIT License',
+    },
 
     // 顶部导航栏内容
     nav: [

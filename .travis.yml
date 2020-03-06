@@ -9,11 +9,17 @@ before_install:
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - export TZ='Asia/Shanghai'
 - chmod 600 ~/.ssh/id_rsa
+addons:
+  ssh_known_hosts: "$IP_ADD"
 install:
 - npm install vuepress vuepress-theme-meteorlxy
 script:
 - npm run build
 - echo "liujunzhou.top" > dist/CNAME
+
+after_script:
+- pwd
+- scp -o StrictHostKeyChecking=no -r dist/  $UserName@$IP_ADD:/var/www/blog/
 deploy:
   provider: pages
   skip_cleanup: true

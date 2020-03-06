@@ -43,7 +43,7 @@ module.exports = {
       // 设置为外部链接
       //avatar: 'https://www.meteorlxy.cn/assets/img/avatar.jpg',
       // 或者放置在 .vuepress/public 文件夹，例如 .vuepress/public/img/avatar.jpg
-      avatar: '/assets/img/avatar.jpg',
+      avatar: '/assets/img/avatar.png',
 
       // 社交平台帐号信息
       sns: {

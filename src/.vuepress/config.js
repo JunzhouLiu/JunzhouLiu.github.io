@@ -17,7 +17,7 @@ module.exports = {
 
 
   // 网站 Title
-  title: 'JunzhouLiu',
+  title: 'Junzhou Liu',
 
   // 网站描述
   description: 'Happy Coding',
@@ -43,7 +43,7 @@ module.exports = {
       nickname: 'Junzhou',
 
       // 个人简介
-      description: 'Happy Coding<br/>Happy Life',
+      description: 'Happy Coding<br/>Happy Life<br/>Developer,Student',
 
       // 电子邮箱
       email: 'Junzhou2016@outlook.com',
@@ -75,10 +75,9 @@ module.exports = {
       // header 的背景，可以使用图片，或者随机变化的图案（geopattern）
       background: {
         // 使用图片的 URL，如果设置了图片 URL，则不会生成随机变化的图案，下面的 useGeo 将失效
-        //url: '/assets/img/bg.jpg',
-
+        url: '/assets/img/head1.4.png',
         // 使用随机变化的图案，如果设置为 false，且没有设置图片 URL，将显示为空白背景
-        useGeo: true,
+        // useGeo: true,
       },
 
       // 是否在 header 显示标题
@@ -88,19 +87,18 @@ module.exports = {
     // 是否显示文章的最近更新时间
     lastUpdated: true,
 
-
     footer: {
       poweredBy: false,
       poweredByTheme: false,
-      custom: 'Copyright 2018-2020 | Junzhou Liu',
+      custom: 'Copyright 2018-2020 | Junzhou Liu<br/><a href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备17043261号-1</a>',
     },
 
     // 顶部导航栏内容
     nav: [
       { text: 'Home', link: '/', exact: true },
       { text: 'Post', link: '/posts/', exact: false },
-      { text: 'About', link: '/about/', exact: true },
       { text: 'Friends', link: '/friend/', exact: true },
+      { text: 'AboutMe', link: '/about/', exact: true },
     ],
 
     // 评论配置，参考下方 [页面评论] 章节

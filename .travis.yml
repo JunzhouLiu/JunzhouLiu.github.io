@@ -3,7 +3,7 @@ sudo: required
 node_js: '10'
 branches:
   only:
-  - hexo
+  - resource
 before_install:
 - openssl aes-256-cbc -K $encrypted_9b2d7e19d83c_key -iv $encrypted_9b2d7e19d83c_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
@@ -12,10 +12,9 @@ before_install:
 addons:
   ssh_known_hosts: "$IP_ADD"
 install:
-- npm install vuepress vuepress-theme-meteorlxy
+- yarn install
 script:
-- npm run build
-- echo "liujunzhou.top" > dist/CNAME
+- yarn build
 
 after_script:
 - pwd
@@ -30,4 +29,4 @@ deploy:
   keep-history: true
   target-branch: master
   on:
-    branch: hexo
+    branch: resource

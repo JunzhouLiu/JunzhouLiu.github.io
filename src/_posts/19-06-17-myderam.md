@@ -4,6 +4,7 @@ date: 2019-06-17 03:24:31
 tags:
 category: 杂记
 draft: true
+aside: false
 ---
 
 10年前，2009年，我小学五年级，喜欢数学和科学，我的梦想是做一个科学家。

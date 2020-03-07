@@ -7,6 +7,9 @@ module.exports = {
     ['@vuepress/google-analytics', {
       'ga': 'UA-130601883-1' // UA-00000000-0
     }],
+    ['@vuepress/search', {
+      searchMaxSuggestions: 10
+    }]
 
   ],
 
@@ -89,7 +92,7 @@ module.exports = {
     footer: {
       poweredBy: false,
       poweredByTheme: false,
-      custom: 'Copyright 2018-Junzhou | MIT License',
+      custom: 'Copyright 2018-2020 | Junzhou Liu',
     },
 
     // 顶部导航栏内容
@@ -97,6 +100,7 @@ module.exports = {
       { text: 'Home', link: '/', exact: true },
       { text: 'Post', link: '/posts/', exact: false },
       { text: 'About', link: '/about/', exact: true },
+      { text: 'Friends', link: '/friend/', exact: true },
     ],
 
     // 评论配置，参考下方 [页面评论] 章节

@@ -1,6 +1,18 @@
-// .vuepress/config.js
+//.vuepress/config.js
 
 module.exports = {
+
+
+  plugins: [
+    ['@vuepress/google-analytics', {
+      'ga': 'UA-130601883-1' // UA-00000000-0
+    }],
+
+  ],
+
+
+
+
   // 网站 Title
   title: 'JunzhouLiu',
 
@@ -108,12 +120,4 @@ module.exports = {
       posts: true,
     },
   },
-  plugins: [
-    [
-      '@vuepress/google-analytics',
-      {
-        'ga': 'UA-130601883-1' // UA-00000000-0
-      }
-    ]
-  ]
 }

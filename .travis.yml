@@ -18,7 +18,7 @@ script:
 
 after_script:
 - pwd
-- rm -rf /var/www/blog/*
+- rm -rf $UserName@$IP_ADD:/var/www/blog/*
 - scp -o StrictHostKeyChecking=no -r dist/*  $UserName@$IP_ADD:/var/www/blog/
 deploy:
   provider: pages

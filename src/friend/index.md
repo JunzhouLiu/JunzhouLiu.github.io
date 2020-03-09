@@ -34,6 +34,9 @@ table td{
 <td><a href="https://asdfv1929.github.io/" target="_blank">阿斯顿1929</a></td>
 <td><a href="http://pengtuo.tech/" target="_blank">PeTu</a></td>
 </tr>
+<tr>
+<td><a href="https://www.alpha1022.me" target="_blank">Alpha1022</a></td>
+</tr>
 
 </table>
 

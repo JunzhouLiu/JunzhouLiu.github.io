@@ -21,9 +21,9 @@ script:
 - yarn build
 after_script:
 - pwd
-- tar zcvf blog.tar.gz dist/
+- cd dist/ && tar zcvf blog.tar.gz * 
 - scp -o StrictHostKeyChecking=no -r blog.tar.gz $UserName@$IP_ADD:/var/www/
-- tar zxvf $UserName@$IP_ADD:/var/www/blog.tar.gz
+- ssh $UserName@$IP_ADD "pwd; tar zxvf /var/www/blog.tar.gz"
 deploy:
   provider: pages
   skip_cleanup: true

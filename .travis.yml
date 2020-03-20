@@ -1,16 +1,13 @@
 language: node_js
 sudo: required
 node_js: '10'
-
-
 branches:
   only:
   - resource
 cache:
   yarn: true
   directories:
-    - node_modules
-
+  - node_modules
 before_install:
 - openssl aes-256-cbc -K $encrypted_9b2d7e19d83c_key -iv $encrypted_9b2d7e19d83c_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
@@ -22,10 +19,8 @@ install:
 - yarn install
 script:
 - yarn build
-
 after_script:
 - pwd
-# - rm -rf $UserName@$IP_ADD:/var/www/blog/*
 - scp -o StrictHostKeyChecking=no -r dist/*  $UserName@$IP_ADD:/var/www/blog/
 deploy:
   provider: pages

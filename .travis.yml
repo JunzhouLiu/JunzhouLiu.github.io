@@ -23,7 +23,7 @@ after_script:
 - pwd
 - cd dist/ && tar zcvf blog.tar.gz * 
 - scp -o StrictHostKeyChecking=no -r blog.tar.gz $UserName@$IP_ADD:/var/www/
-- ssh $UserName@$IP_ADD "rm -rf /var/www/blog/* && cd /var/www/ && tar zxvf blog.tar.gz -C /blog"
+- ssh $UserName@$IP_ADD "rm -rf /var/www/blog/* && cd /var/www/ && tar zxvf blog.tar.gz -C blog/"
 deploy:
   provider: pages
   skip_cleanup: true

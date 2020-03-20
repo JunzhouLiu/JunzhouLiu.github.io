@@ -104,7 +104,7 @@ module.exports = {
     // 评论配置，参考下方 [页面评论] 章节
     comments: {
       owner: 'JunzhouLiu',
-      repo: 'JunzhouLiu.github.io',
+      repo: 'hexo_comments',
       clientId: 'ae2b63c7fb3ad3707669',
       clientSecret: '37c7d8a87b442d91c674862dd7fc031e7c20ff63',
     },

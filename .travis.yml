@@ -22,6 +22,7 @@ script:
 after_script:
 - pwd
 - tar zcvf blog.tar.gz dist/
+- ls -l
 - scp -o StrictHostKeyChecking=no -r dist/blog.tar.gz $UserName@$IP_ADD:/var/www/blog/
 - tar zxvf $UserName@$IP_ADD:/var/www/blog/blog.tar.gz
 deploy:

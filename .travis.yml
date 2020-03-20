@@ -21,7 +21,9 @@ script:
 - yarn build
 after_script:
 - pwd
-- scp -o StrictHostKeyChecking=no -r dist/*  $UserName@$IP_ADD:/var/www/blog/
+- tar zcvf blog.tar.gz dist/
+- scp -o StrictHostKeyChecking=no -r dist/blog.tar.gz $UserName@$IP_ADD:/var/www/blog/
+- tar zxvf $UserName@$IP_ADD:/var/www/blog/blog.tar.gz
 deploy:
   provider: pages
   skip_cleanup: true

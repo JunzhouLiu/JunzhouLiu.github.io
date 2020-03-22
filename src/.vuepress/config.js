@@ -9,7 +9,18 @@ module.exports = {
     }],
     ['@vuepress/search', {
       searchMaxSuggestions: 10
-    }]
+    }],
+    [
+      'vuepress-plugin-mathjax',
+      {
+        target: 'chtml',//chtml,svg
+        macros: {
+          '*': '\\times',
+        },
+        showError: true,
+        cache: false
+      },
+    ],
 
   ],
 

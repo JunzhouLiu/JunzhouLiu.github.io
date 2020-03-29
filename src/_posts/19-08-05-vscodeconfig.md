@@ -1,8 +1,9 @@
 ---
 title: VScode+GCC配置轻量级C++开发环境
 date: 2019-08-05 02:24:31
+category: 随笔
 tags: 
-category: 杂记
+- GCC
 draft: false
 aside: true
 ---

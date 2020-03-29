@@ -133,4 +133,4 @@ module.exports = {
       posts: true,
     },
   },
-}
+};

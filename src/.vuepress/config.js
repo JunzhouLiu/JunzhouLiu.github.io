@@ -101,7 +101,7 @@ module.exports = {
     footer: {
       poweredBy: false,
       poweredByTheme: false,
-      custom: 'Copyright 2018-2020 | Junzhou Liu<br/><a href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备17043261号-1</a>',
+      custom: 'Copyright 2018-2020 | Junzhou Liu<br/><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备17043261号</a>',
     },
 
     // 顶部导航栏内容

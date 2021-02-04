@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>树莓派4B食用指南（二、搭建家庭网盘） | Junzhou Liu</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <meta name="description" content="Happy Coding">
+    <link rel="preload" href="/assets/css/0.styles.91d6fc86.css" as="style"><link rel="preload" href="/assets/js/app.f3764dfb.js" as="script"><link rel="preload" href="/assets/js/9.21ff3301.js" as="script"><link rel="preload" href="/assets/js/4.0bcc247d.js" as="script"><link rel="prefetch" href="/assets/js/1.07893bf2.js"><link rel="prefetch" href="/assets/js/10.111a97a9.js"><link rel="prefetch" href="/assets/js/11.e763becd.js"><link rel="prefetch" href="/assets/js/12.327ff81d.js"><link rel="prefetch" href="/assets/js/13.41bd8e90.js"><link rel="prefetch" href="/assets/js/14.b2d39000.js"><link rel="prefetch" href="/assets/js/15.9781e48f.js"><link rel="prefetch" href="/assets/js/16.68d5928f.js"><link rel="prefetch" href="/assets/js/17.3ea87d67.js"><link rel="prefetch" href="/assets/js/18.ec5db6f9.js"><link rel="prefetch" href="/assets/js/19.597e6758.js"><link rel="prefetch" href="/assets/js/20.9e320ebe.js"><link rel="prefetch" href="/assets/js/21.3218b47c.js"><link rel="prefetch" href="/assets/js/22.3d7eba8b.js"><link rel="prefetch" href="/assets/js/23.55fbb7fb.js"><link rel="prefetch" href="/assets/js/24.80fa5dd7.js"><link rel="prefetch" href="/assets/js/25.f248a4ce.js"><link rel="prefetch" href="/assets/js/26.50051529.js"><link rel="prefetch" href="/assets/js/27.18cf837b.js"><link rel="prefetch" href="/assets/js/28.7e3b4575.js"><link rel="prefetch" href="/assets/js/3.69e935ea.js"><link rel="prefetch" href="/assets/js/5.87f2d273.js"><link rel="prefetch" href="/assets/js/6.75f4b90d.js"><link rel="prefetch" href="/assets/js/7.c0617edc.js"><link rel="prefetch" href="/assets/js/8.cc647f95.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.91d6fc86.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-meteorlxy"><header class="header" style="background-size:cover;background-repeat:no-repeat;background-position:center;background-attachment:scroll;background-image:url(/assets/img/background.svg);" data-v-7a046aea><div data-v-e4145d0a data-v-7a046aea><nav class="navbar" data-v-e4145d0a><div class="container" data-v-e4145d0a><a href="/" class="router-link-active" data-v-e4145d0a><span class="navbar-site-name" data-v-e4145d0a>
+          Junzhou Liu
+        </span></a> <div class="navbar-toggler" data-v-e4145d0a><svg class="icon" style="font-size:1.2em;" data-v-e4145d0a data-v-e4145d0a><title data-v-e4145d0a data-v-e4145d0a>menu</title><use xlink:href="#icon-menu" data-v-e4145d0a data-v-e4145d0a></use></svg></div> <div class="navbar-links" data-v-e4145d0a><a href="/" class="navbar-link" data-v-e4145d0a>
+            Home
+          </a><a href="/posts/" class="navbar-link" data-v-e4145d0a>
+            Post
+          </a><a href="/friend/" class="navbar-link" data-v-e4145d0a>
+            Friends
+          </a><a href="/about/" class="navbar-link" data-v-e4145d0a>
+            AboutMe
+          </a></div></div></nav> <div class="navbar-holder" style="display:none;" data-v-e4145d0a></div></div> <div class="banner" data-v-98d6aa8c data-v-7a046aea data-v-7a046aea><div class="container" data-v-98d6aa8c><div class="center" data-v-98d6aa8c><h1 data-v-98d6aa8c data-v-7a046aea>
+          树莓派4B食用指南（二、搭建家庭网盘）
+        </h1></div></div></div></header> <div class="container clearfix show-aside" data-v-4dd605a1 data-v-4dd605a1><main class="main" data-v-4dd605a1><div class="post" data-v-4dd605a1 data-v-4dd605a1><section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2021-01-27
+    </span> <span class="update-date" data-v-4e23451f>
+      最后修改 : 2021-02-04
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/bilibili-helper-docs/" class="post-link" data-v-4e23451f>
+      上一篇 : BILIBILI-HELPR使用文档
+    </a> <a href="/rpi-guide3/" class="post-link" data-v-4e23451f>
+      下一篇 : 树莓派4B食用指南（三、从USB存储设备启动Ubuntu Server）
+    </a></section></section> <article class="main-div"><div class="post-content content content__default"><h2 id="前言"><a href="#前言" class="header-anchor">#</a> 前言</h2> <p>继上次开箱树莓派4B也过了将近个把月了，期间也尝试过在树莓派上跑了一些服务，总体来讲8G版本的内存确实过剩，除了有次构建aarch64架构的docker镜像时内存占用一度上了40%之外，其余时间基本都在20%左右。今天就来讲讲如何使用树莓派打造私有网盘。上传下载50MB/S是问题不大滴,并且介绍的这两款开源网盘都有跨平台的客户端,支持流媒体播放,基本算是一个丐版NAS.
+</p> <h2 id="情况介绍"><a href="#情况介绍" class="header-anchor">#</a> 情况介绍</h2> <p>我的树莓派是直接通过网线连在千兆的路由器上，我房间的网线也都是六类线，勉强算是千兆内网了。由于我之前使用的64G的金士顿TF卡插在树莓派上运行，内存卡做网盘的话，多少是有点局限性的，就不提读写瓶颈了，容量也是大个问题。（这个问题可以额外挂载一块硬盘），而我选择了直接通过USB3.0从1T的机械盘中启动系统，彻底抛开了TF卡。</p> <p><img src="/assets/img/myrpi4.741f2b03.jpg" alt="">
+在我房间基本就像这样,和路由器一起,emmmm 算是个文件服务器,也算是个aarch64的小型服务器.未来可能也算个家庭环境传感器的数据处理中心?(刘同学又在强行蹭高级词汇了 orz)</p> <p>树莓派4B是支持原生USB启动的，但是要求bootloader版本比较新，可能需要卡刷下<code>EEPROM</code>。这部分我就不额外展开讲了，有兴趣的同学可以看看我上期的文章。（糟糕，忘了我还没写这篇文章）.</p> <p>系统我采用了Ubuntu Server 20.10,之所所以选择20.10不选择20.04的原因是20.04的系统无法直接USB引导启动，需要额外的做一些配置（配置后会导致硬盘读写性能锐减，这里我没找到原因，通过TF卡引导USB接口上的硬盘启动20.04则没有这个问题），而20.10版本则可以直接启动。当然如果你使用TF卡跑在Ubuntu20.04上，按照本教程走也没有任何问题。</p> <p>为什么选择Ubuntu，因为树莓派是Ubuntu的认证设备，可靠性是很强滴。</p> <blockquote><p><a href="https://ubuntu.com/blog/ubuntu-20-04-lts-is-certified-for-the-raspberry-pi" target="_blank" rel="noopener noreferrer">Ubuntu 20.04 LTS is certified for the Raspberry Pi<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><a href="https://ubuntu.com/blog/raspberry-pi-and-ubuntu-2020-roundup" target="_blank" rel="noopener noreferrer">Raspberry Pi and Ubuntu: 2020 roundup<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></blockquote> <p>关于网盘的选择，这里我选择了ownCloud和nextCloud，方式是使用Docker容器部署，因为部署方便，隔离性也比较好。</p> <p>接下来废话就不多说了，直接开始搞起,基本全程命令配置，跟着教程走不易出错。</p> <h2 id="前期准备"><a href="#前期准备" class="header-anchor">#</a> 前期准备</h2> <h3 id="使用清华大学的源"><a href="#使用清华大学的源" class="header-anchor">#</a> 使用清华大学的源</h3> <p>由于Ubuntu自己的源国内访问多少有那么些慢，所以这里我们采用tuna的源,请根据自己的系统版本选择对应的源。</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># 先备份更新源文件</span>
+<span class="token function">sudo</span> <span class="token function">cp</span> -p /etc/apt/sources.list /etc/apt/sources.list.bak
+<span class="token comment"># 修改apt源文件,将Ubuntu自己的源用 # 注释。</span>
+<span class="token function">sudo</span> <span class="token function">vim</span> /etc/apt/sources.list
+</code></pre></div><p><strong>Ubuntu20.04.1 LTS</strong></p> <div class="language- extra-class"><pre class="language-text"><code># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security main restricted universe multiverse
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-proposed main restricted universe multiverse
+</code></pre></div><p><strong>Ubuntu20.10</strong></p> <div class="language- extra-class"><pre class="language-text"><code># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy-security main restricted universe multiverse
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ groovy-proposed main restricted universe multiverse
+</code></pre></div><p>完成后执行以下命令更新下软解列表和软件。</p> <div class="language- extra-class"><pre class="language-text"><code>sudo apt update
+sudo apt upgrade
+</code></pre></div><h3 id="安装依赖和docker"><a href="#安装依赖和docker" class="header-anchor">#</a> 安装依赖和<code>Docker</code></h3> <ol><li>安装一些依赖和<code>docker-compose</code>，如果是20.10的系统，可能需要自己构建，这个过程中耐心等待即可。</li></ol> <div class="language- extra-class"><pre class="language-text"><code>sudo apt-get update &amp;&amp; sudo apt-get install -y vim python3-pip curl git
+pip3 install --upgrade pip
+pip install docker-compose
+</code></pre></div><ol start="2"><li>安装<code>Docker</code>,其中<code>Docker</code>的安装可能较慢，需要耐心等。</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># 国内用户一键安装Docker，这个会快一些</span>
+<span class="token function">sudo</span> <span class="token function">curl</span> -sSL https://get.daocloud.io/docker <span class="token operator">|</span> <span class="token function">sh</span> 
+<span class="token comment"># 使用docker的安装脚本安装</span>
+<span class="token function">sudo</span> <span class="token function">curl</span> -sSL get.docker.com <span class="token operator">|</span> <span class="token function">sh</span>
+</code></pre></div><ol start="3"><li>使用<code>docker -v</code>和<code>docker-compose -v</code>命令验证是否安装成功,如果出现类似的信息，则安装成功。</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>root@Raspberry-Pi4:/<span class="token comment"># docker -v</span>
+Docker version <span class="token number">20.10</span>.2, build 2291f61
+root@Raspberry-Pi4:/<span class="token comment"># docker-compose -v</span>
+docker-compose version <span class="token number">1.28</span>.0, build unknown
+</code></pre></div><ol start="4"><li>到目前为止我们的前置工具基本上已经安装到位了。在开始网盘的安装之前，我们为<code>Docker</code>配置个加速源，因为国内的网络问题，拉镜像可能会经常失败,依次执行如下命令即可。</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> <span class="token function">mkdir</span> -p /etc/docker
+<span class="token function">sudo</span> <span class="token function">tee</span> /etc/docker/daemon.json <span class="token operator">&lt;&lt;-</span><span class="token string">'EOF'
+{
+  &quot;registry-mirrors&quot;: [&quot;http://hub-mirror.c.163.com&quot;]
+}
+EOF</span>
+<span class="token function">sudo</span> systemctl daemon-reload
+<span class="token function">sudo</span> systemctl restart docker
+</code></pre></div><p>再给大家额外提供几个镜像地址,需要的时候直接替换[]内的地址即可。</p> <div class="language- extra-class"><pre class="language-text"><code>Docker中国区官方镜像
+https://registry.docker-cn.com
+中国科技大学
+https://docker.mirrors.ustc.edu.cn
+阿里云的镜像加速器需要申请自己的地址
+https://cr.console.aliyun.com/
+申请到的专属地址大概长这样：https://xxxxxx.mirror.aliyuncs.com
+</code></pre></div><h2 id="安装own-cloud"><a href="#安装own-cloud" class="header-anchor">#</a> 安装own cloud</h2> <ol><li>在<code>/home/</code>下创建个<code>ownCloud</code>文件夹，并且进入到这个目录。</li></ol> <div class="language- extra-class"><pre class="language-text"><code>sudo mkdir /home/ownCloud
+cd /home/ownCloud
+</code></pre></div><ol start="2"><li>创建云盘的配置文件，初始化的时候会将此配置文件作为云盘初始化的参数传递，用户名默和密码默认是admin,默认工作在8080端口，这个可以根据自己的需求自定义。</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">cat</span> <span class="token operator">&lt;&lt;</span> EOF <span class="token operator">&gt;</span> .env
+<span class="token assign-left variable">OWNCLOUD_VERSION</span><span class="token operator">=</span><span class="token number">10.6</span>
+<span class="token assign-left variable">OWNCLOUD_DOMAIN</span><span class="token operator">=</span>localhost:8088
+<span class="token assign-left variable">ADMIN_USERNAME</span><span class="token operator">=</span>admin
+<span class="token assign-left variable">ADMIN_PASSWORD</span><span class="token operator">=</span>admin
+<span class="token assign-left variable">HTTP_PORT</span><span class="token operator">=</span><span class="token number">8088</span>
+EOF
+</code></pre></div><ol start="3"><li>创建docker-compose.yml文件,数据库的相关密码和信息都写在了此文件中，参见owncloud的environment参数列表。不建议小白随意改动此文件。</li></ol> <div class="language-yml extra-class"><pre class="language-yml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'2.1'</span>
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">files</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> local
+  <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> local
+  <span class="token key atrule">backup</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> local
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> local
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">owncloud</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> owncloud/server<span class="token punctuation">:</span>$<span class="token punctuation">{</span>OWNCLOUD_VERSION<span class="token punctuation">}</span>
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> $<span class="token punctuation">{</span>HTTP_PORT<span class="token punctuation">}</span><span class="token punctuation">:</span><span class="token number">8080</span>
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> db
+      <span class="token punctuation">-</span> redis
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> OWNCLOUD_DOMAIN=$<span class="token punctuation">{</span>OWNCLOUD_DOMAIN<span class="token punctuation">}</span>
+      <span class="token punctuation">-</span> OWNCLOUD_DB_TYPE=mysql
+      <span class="token punctuation">-</span> OWNCLOUD_DB_NAME=owncloud
+      <span class="token punctuation">-</span> OWNCLOUD_DB_USERNAME=owncloud
+      <span class="token punctuation">-</span> OWNCLOUD_DB_PASSWORD=owncloud
+      <span class="token punctuation">-</span> OWNCLOUD_DB_HOST=db
+      <span class="token punctuation">-</span> OWNCLOUD_ADMIN_USERNAME=$<span class="token punctuation">{</span>ADMIN_USERNAME<span class="token punctuation">}</span>
+      <span class="token punctuation">-</span> OWNCLOUD_ADMIN_PASSWORD=$<span class="token punctuation">{</span>ADMIN_PASSWORD<span class="token punctuation">}</span>
+      <span class="token punctuation">-</span> OWNCLOUD_MYSQL_UTF8MB4=true
+      <span class="token punctuation">-</span> OWNCLOUD_REDIS_ENABLED=true
+      <span class="token punctuation">-</span> OWNCLOUD_REDIS_HOST=redis
+    <span class="token key atrule">healthcheck</span><span class="token punctuation">:</span>
+      <span class="token key atrule">test</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;CMD&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/usr/bin/healthcheck&quot;</span><span class="token punctuation">]</span>
+      <span class="token key atrule">interval</span><span class="token punctuation">:</span> 30s
+      <span class="token key atrule">timeout</span><span class="token punctuation">:</span> 10s
+      <span class="token key atrule">retries</span><span class="token punctuation">:</span> <span class="token number">5</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> files<span class="token punctuation">:</span>/mnt/data
+  <span class="token key atrule">db</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> webhippie/mariadb<span class="token punctuation">:</span>latest
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> MARIADB_ROOT_PASSWORD=owncloud
+      <span class="token punctuation">-</span> MARIADB_USERNAME=owncloud
+      <span class="token punctuation">-</span> MARIADB_PASSWORD=owncloud
+      <span class="token punctuation">-</span> MARIADB_DATABASE=owncloud
+      <span class="token punctuation">-</span> MARIADB_MAX_ALLOWED_PACKET=128M
+      <span class="token punctuation">-</span> MARIADB_INNODB_LOG_FILE_SIZE=64M
+    <span class="token key atrule">healthcheck</span><span class="token punctuation">:</span>
+      <span class="token key atrule">test</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;CMD&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/usr/bin/healthcheck&quot;</span><span class="token punctuation">]</span>
+      <span class="token key atrule">interval</span><span class="token punctuation">:</span> 30s
+      <span class="token key atrule">timeout</span><span class="token punctuation">:</span> 10s
+      <span class="token key atrule">retries</span><span class="token punctuation">:</span> <span class="token number">5</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mysql<span class="token punctuation">:</span>/var/lib/mysql
+      <span class="token punctuation">-</span> backup<span class="token punctuation">:</span>/var/lib/backup
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> webhippie/redis<span class="token punctuation">:</span>latest
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> REDIS_DATABASES=1
+    <span class="token key atrule">healthcheck</span><span class="token punctuation">:</span>
+      <span class="token key atrule">test</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;CMD&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/usr/bin/healthcheck&quot;</span><span class="token punctuation">]</span>
+      <span class="token key atrule">interval</span><span class="token punctuation">:</span> 30s
+      <span class="token key atrule">timeout</span><span class="token punctuation">:</span> 10s
+      <span class="token key atrule">retries</span><span class="token punctuation">:</span> <span class="token number">5</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> redis<span class="token punctuation">:</span>/var/lib/redis
+</code></pre></div><ol start="4"><li>使用<code>docker-compose up -d</code>命令启动网盘,第一次启动时需要拉取镜像,这个过程需要的时间取决于网络环境,当镜像拉取完成后,你看到如下输出时,意味着容器已经启动了.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>root@Raspberry-Pi4:/home/ownCloud<span class="token comment"># docker-compose up -d</span>
+Building with native build. Learn about native build <span class="token keyword">in</span> Compose here: https://docs.docker.com/go/compose-native-build/
+Starting owncloud_redis_1 <span class="token punctuation">..</span>. <span class="token keyword">done</span>
+Starting owncloud_db_1    <span class="token punctuation">..</span>. <span class="token keyword">done</span>
+Starting owncloud_owncloud_1 <span class="token punctuation">..</span>. <span class="token keyword">done</span>
+</code></pre></div><p>此时可以通过<code>docker-compose ps</code>命令查看容器的状态.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@Raspberry-Pi4:/home/ownCloud<span class="token comment"># docker-compose ps</span>
+       Name                      Command                  State               Ports         
+--------------------------------------------------------------------------------------------
+owncloud_db_1         /usr/bin/entrypoint /bin/s <span class="token punctuation">..</span>.   Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">3306</span>/tcp              
+owncloud_owncloud_1   /usr/bin/entrypoint /usr/b <span class="token punctuation">..</span>.   Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">0.0</span>.0.0:8088-<span class="token operator">&gt;</span><span class="token number">8080</span>/tcp
+owncloud_redis_1      /usr/bin/entrypoint /bin/s <span class="token punctuation">..</span>.   Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">6379</span>/tcp     
+</code></pre></div><p>耐心等待数分钟,会自动完成相关的初始化工作,此时,可以访问 <code>http://树莓派ip:8088</code> 开始使用云盘.</p> <p><img src="/assets/img/owncloudlogin.07a6c38f.png" alt=""> <img src="/assets/img/owncloudhome.029f1d44.png" alt=""> <img src="/assets/img/ownclouddwonload.06223957.png" alt=""></p> <ol start="5"><li>问题排查,如果访问8088端口没有登录页面,那可能由于以下原因导致的.</li></ol> <ul><li>8088端口没有放行.执行<code>sudo ufw allow 8088</code>放行端口.</li> <li>云盘初始化还没有完成.使用<code>docker-compose logs --follow owncloud</code>命令确诊初始化是否完成.如果有如下输入,则可以确定初始化已经完成了.</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>owncloud_1  <span class="token operator">|</span> Writing apache config<span class="token punctuation">..</span>.
+owncloud_1  <span class="token operator">|</span> Enabling <span class="token function">cron</span> background<span class="token punctuation">..</span>.
+owncloud_1  <span class="token operator">|</span> Set mode <span class="token keyword">for</span> background <span class="token function">jobs</span> to <span class="token string">'cron'</span>
+owncloud_1  <span class="token operator">|</span> Touching <span class="token function">cron</span> configs<span class="token punctuation">..</span>.
+owncloud_1  <span class="token operator">|</span> Starting <span class="token function">cron</span> daemon<span class="token punctuation">..</span>.
+owncloud_1  <span class="token operator">|</span> Starting apache daemon<span class="token punctuation">..</span>.
+</code></pre></div><h2 id="docker和docker-compose知识穿插混讲"><a href="#docker和docker-compose知识穿插混讲" class="header-anchor">#</a> Docker和docker-compose知识穿插混讲</h2> <p>看了如上的教程,可能你还不是很理解执行的一些命令是什么意思,这里我穿插讲一下一些<code>docker</code>和<code>docker-compose</code>命令.</p> <h3 id="docker-compose的常用管理命令"><a href="#docker-compose的常用管理命令" class="header-anchor">#</a> docker-compose的常用管理命令.</h3> <p>使用<code>docker-compose</code>命令前,我们要确认命令行已经进入了<code>docker-compose.yml</code>文件所在的目录,如果不在,那我们需要在命令中指定<code>docker-compose.yml</code>的位置路径.</p> <p>例如<code>docker-compose -f /home/ownCloud/docker-compose.yml ps</code> .</p> <ul><li><code>docker-compose up -d</code> 启动容器并在后台运行</li> <li><code>docker-compose stop</code> 停止已运行的容器</li> <li><code>docker-compose restart</code> 重启容器</li> <li><code>docker-compose ps</code> 列出容器</li> <li><code>docker-compose logs</code>查看日志</li> <li><code>docker-compose down</code>停止并且移除容器</li> <li><code>docker-compose help</code>查看所有命令</li></ul> <p>以上这些命令可以在后面跟上容器名,指定要操作的容器.</p> <p>例如<code>docker-compose stop owncloud_redis_1</code></p> <h2 id="docker命令"><a href="#docker命令" class="header-anchor">#</a> Docker命令</h2> <p>Docker命令我这里只讲一个查看数据卷的命令,因为你使用<code>down</code>命令移除销毁云盘容器之后,不意味着你之前的数据就没了,当你再次启动容器时,这些数据依旧会存在.</p> <p>所以我们可以通过<code>docker volume ls</code>命令查看所有的数据卷.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@Raspberry-Pi4:/<span class="token comment"># docker volume ls</span>
+DRIVER    VOLUME NAME
+<span class="token builtin class-name">local</span>     owncloud_backup
+<span class="token builtin class-name">local</span>     owncloud_files
+<span class="token builtin class-name">local</span>     owncloud_mysql
+<span class="token builtin class-name">local</span>     owncloud_redis
+</code></pre></div><p>通过<code>docker volume rm 名称1 名称2</code>来移除这些数据卷,不移除的话,下次up -d数据依旧会存在.</p> <p>通过<code>docker volume inspect 数据卷名称</code>来查看他们的具体位置.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@Raspberry-Pi4:/<span class="token comment"># docker volume inspect owncloud_files </span>
+<span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        <span class="token string">&quot;CreatedAt&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;2021-01-26T12:46:24+08:00&quot;</span>,
+        <span class="token string">&quot;Driver&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;local&quot;</span>,
+        <span class="token string">&quot;Labels&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;com.docker.compose.project&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;owncloud&quot;</span>,
+            <span class="token string">&quot;com.docker.compose.version&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;1.28.0&quot;</span>,
+            <span class="token string">&quot;com.docker.compose.volume&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;files&quot;</span>
+        <span class="token punctuation">}</span>,
+        <span class="token string">&quot;Mountpoint&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;/var/lib/docker/volumes/owncloud_files/_data&quot;</span>,
+        <span class="token string">&quot;Name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;owncloud_files&quot;</span>,
+        <span class="token string">&quot;Options&quot;</span><span class="token builtin class-name">:</span> null,
+        <span class="token string">&quot;Scope&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;local&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><h2 id="安装nextcloud"><a href="#安装nextcloud" class="header-anchor">#</a> 安装nextCloud</h2> <p>nextCloud这里我只介绍postgre数据库版本的安装方式.</p> <ol><li>在<code>/home/</code>下创建个<code>nextCloud</code>文件夹，并且进入到这个目录。</li></ol> <div class="language- extra-class"><pre class="language-text"><code>sudo mkdir /home/nextCloud
+cd /home/nextCloud
+</code></pre></div><ol start="2"><li>创建云盘配置文件,同样的这些文件会在初始化服务时用到,两个<code>nextcloud_admin_xxx.txt</code>文件对应的是你登陆的账号和密码.<code>postgres_db.txt</code>对应的是数据库名,以此类推.</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">echo</span> admin <span class="token operator">&gt;</span> nextcloud_admin_user.txt
+<span class="token builtin class-name">echo</span> admin <span class="token operator">&gt;</span> nextcloud_admin_password.txt
+<span class="token builtin class-name">echo</span> nextcloud <span class="token operator">&gt;</span> postgres_db.txt
+<span class="token builtin class-name">echo</span> nextcloud <span class="token operator">&gt;</span> postgres_user.txt
+<span class="token builtin class-name">echo</span> nextcloud <span class="token operator">&gt;</span> postgres_password.txt
+</code></pre></div><ol start="3"><li>创建<code>docker-compose.yml</code> ,默认启动端口为8080,如果需要指定端口只需要将app字段下的ports 修改为你想要设置的端口即可. 例如<code>- 9000:80</code>,注意,只需要修改左侧的端口号即可.</li></ol> <div class="language- extra-class"><pre class="language-text"><code>version: '3.2'
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB_FILE=/run/secrets/postgres_db
+      - POSTGRES_USER_FILE=/run/secrets/postgres_user
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+    secrets:
+      - postgres_db
+      - postgres_password
+      - postgres_user
+  app:
+    image: nextcloud
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - nextcloud:/var/www/html
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_DB_FILE=/run/secrets/postgres_db
+      - POSTGRES_USER_FILE=/run/secrets/postgres_user
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+      - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
+      - NEXTCLOUD_ADMIN_USER_FILE=/run/secrets/nextcloud_admin_user
+    depends_on:
+      - db
+    secrets:
+      - nextcloud_admin_password
+      - nextcloud_admin_user
+      - postgres_db
+      - postgres_password
+      - postgres_user
+volumes:
+  db:
+  nextcloud:
+secrets:
+  nextcloud_admin_password:
+    file: ./nextcloud_admin_password.txt # put admin password to this file
+  nextcloud_admin_user:
+    file: ./nextcloud_admin_user.txt # put admin username to this file
+  postgres_db:
+    file: ./postgres_db.txt # put postgresql db name to this file
+  postgres_password:
+    file: ./postgres_password.txt # put postgresql password to this file
+  postgres_user:
+    file: ./postgres_user.txt # put postgresql username to this file
+</code></pre></div><ol start="4"><li>使用<code>docker-compose up -d</code>命令启动.</li></ol> <p>第一次启动时需要拉取镜像,这个过程需要的时间取决于网络环境,当镜像拉取完成后,你看到如下输出时,意味着容器已经启动了,耐心等待数分钟即可打开 <code>http://树莓派的ip:8080</code>开始登录使用网盘.</p> <div class="language-bash extra-class"><pre class="language-bash"><code>root@Raspberry-Pi4:/home/nextCloud<span class="token comment"># docker-compose up -d</span>
+Building with native build. Learn about native build <span class="token keyword">in</span> Compose here: https://docs.docker.com/go/compose-native-build/
+Creating network <span class="token string">&quot;nextcloud_default&quot;</span> with the default driver
+Creating nextcloud_db_1 <span class="token punctuation">..</span>. <span class="token keyword">done</span>
+Creating nextcloud_app_1 <span class="token punctuation">..</span>. <span class="token keyword">done</span>
+</code></pre></div><p>ps:容器启动状态为<code>done</code>的时候不意味着服务已经初始化完成,请使用<code>docker-compose logs --follow app</code> 查看日志,确保初始化已经完全完成.</p> <ol start="5"><li>修改配置文件
+第一次登陆时,你可能会遇到如下提示</li></ol> <p><img src="/assets/img/first.0efab005.png" alt=""></p> <p>此时回一下我们提到docker查看数据卷位置命令,对,就是<code>docker volume</code>命令,查看下数据卷位置.<code>docker volume inspect nextcloud_nextcloud</code></p> <div class="language- extra-class"><pre class="language-text"><code>root@Raspberry-Pi4:/home/nextCloud# docker volume inspect nextcloud_nextcloud 
+[
+    {
+        &quot;CreatedAt&quot;: &quot;2021-01-25T20:35:29+08:00&quot;,
+        &quot;Driver&quot;: &quot;local&quot;,
+        &quot;Labels&quot;: {
+            &quot;com.docker.compose.project&quot;: &quot;nextcloud&quot;,
+            &quot;com.docker.compose.version&quot;: &quot;1.28.0&quot;,
+            &quot;com.docker.compose.volume&quot;: &quot;nextcloud&quot;
+        },
+        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/nextcloud_nextcloud/_data&quot;,
+        &quot;Name&quot;: &quot;nextcloud_nextcloud&quot;,
+        &quot;Options&quot;: null,
+        &quot;Scope&quot;: &quot;local&quot;
+    }
+]
+</code></pre></div><p>然后我们cd到<code>/var/lib/docker/volumes/nextcloud_nextcloud/_data</code>目录,使用<code>nano config/config.php</code> 修改<code>trusted_domains</code>配置.</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token single-quoted-string string">'trusted_domains'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> 
+  <span class="token keyword">array</span> <span class="token punctuation">(</span>
+    <span class="token number">0</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'localhost'</span><span class="token punctuation">,</span>
+    <span class="token number">1</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">'改为你树莓派的实际ip'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+</code></pre></div><p>之后刷新,我们便可以登陆啦~~~</p> <p><img src="/assets/img/nextcloudlogin.441d0a0c.png" alt=""> <img src="/assets/img/nextcloudhome.ed128b33.png" alt=""></p> <h3 id="nextcloud的调优"><a href="#nextcloud的调优" class="header-anchor">#</a> nextCloud的调优</h3> <ol><li>优化上传速度
+执行<code>docker exec -u 33 -it nextcloud_app_1 bash</code> 使用33用户进入容器.
+执行<code>php occ config:app:set files max_chunk_size --value 0</code> 取消块大小限制</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>root@Raspberry-Pi4:/home/nextCloud<span class="token comment"># docker exec -u 33 -it nextcloud_app_1 bash</span>
+www-data@e0dd14717e86:~/html$ php occ config:app:set files max_chunk_size --value <span class="token number">0</span>
+Config value max_chunk_size <span class="token keyword">for</span> app files <span class="token builtin class-name">set</span> to <span class="token number">0</span>
+</code></pre></div><ol start="2"><li>使用<code>nginx</code>代理,比如监听80,然后转到8080,不再赘述.</li></ol> <p>感受下上传和下载速度吧~~</p> <p><img src="/assets/img/uploadspeed.7e66f458.png" alt=""> <img src="/assets/img/nextclouddownload.4cca6d2e.png" alt=""></p> <h2 id="参考列表"><a href="#参考列表" class="header-anchor">#</a> 参考列表</h2> <ul><li><a href="https://doc.owncloud.org/server/10.6/admin_manual/installation/docker/" target="_blank" rel="noopener noreferrer">owncloud<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li><a href="https://github.com/nextcloud/docker" target="_blank" rel="noopener noreferrer">nextcloud/docker<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li><a href="https://docs.docker.com/compose/reference/overview/" target="_blank" rel="noopener noreferrer">docker/compose<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li><a href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu-ports/" target="_blank" rel="noopener noreferrer">TUNA Ubuntu Ports<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li><a href="https://ubuntu.com/blog/ubuntu-20-04-lts-is-certified-for-the-raspberry-pi" target="_blank" rel="noopener noreferrer">Ubuntu 20.04 LTS is certified for the Raspberry Pi<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li><a href="https://ubuntu.com/blog/raspberry-pi-and-ubuntu-2020-roundup" target="_blank" rel="noopener noreferrer">Raspberry Pi and Ubuntu: 2020 roundup<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></article> <section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2021-01-27
+    </span> <span class="update-date" data-v-4e23451f>
+      最后修改 : 2021-02-04
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/bilibili-helper-docs/" class="post-link" data-v-4e23451f>
+      上一篇 : BILIBILI-HELPR使用文档
+    </a> <a href="/rpi-guide3/" class="post-link" data-v-4e23451f>
+      下一篇 : 树莓派4B食用指南（三、从USB存储设备启动Ubuntu Server）
+    </a></section></section> <!----></div></main> <aside class="aside" data-v-4dd605a1><div class="info-card main-div" data-v-9d847660 data-v-4dd605a1><div class="info-card-header" data-v-9d847660><img src="/assets/img/avatar.png" alt="Junzhou" class="info-avatar" data-v-9d847660></div> <div class="info-card-body" data-v-9d847660><section class="info-nickname" data-v-9d847660>
+      Junzhou
+    </section> <section class="info-desc" data-v-9d847660>Happy Coding<br/>Happy Life<br/>Developer,Student</section> <section class="info-contact" data-v-9d847660><section data-v-9d847660><span title="XinYang City, China" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>XinYang City, China</title><use xlink:href="#icon-location" data-v-9d847660 data-v-9d847660></use></svg><span class="info-text" data-v-9d847660 data-v-9d847660>
+          XinYang City, China
+        </span></span></section> <!----> <section data-v-9d847660><a href="mailto:Junzhou2016@outlook.com" title="Junzhou2016@outlook.com" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>Junzhou2016@outlook.com</title><use xlink:href="#icon-email" data-v-9d847660 data-v-9d847660></use></svg><span class="info-text" data-v-9d847660 data-v-9d847660>
+          Junzhou2016@outlook.com
+        </span></a></section></section></div> <div class="info-card-footer" data-v-9d847660><section class="info-sns clearfix" data-v-9d847660><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-9d847660><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1.5em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-9d847660 data-v-9d847660></use></svg></span></a></section></div></div> <div class="post-nav-card main-div" style="position:relative;top:0;width:0px;" data-v-4dd605a1><div class="post-nav-contents"><svg class="icon"><title>book</title><use xlink:href="#icon-book"></use></svg> <span>文章目录</span> <div class="post-nav-toc"><ul><li><a href="/rpi-guide2/#前言">前言</a></li><li><a href="/rpi-guide2/#情况介绍">情况介绍</a></li><li><a href="/rpi-guide2/#前期准备">前期准备</a><ul><li><a href="/rpi-guide2/#使用清华大学的源">使用清华大学的源</a></li><li><a href="/rpi-guide2/#安装依赖和docker">安装依赖和Docker</a></li></ul></li><li><a href="/rpi-guide2/#安装own-cloud">安装own cloud</a></li><li><a href="/rpi-guide2/#docker和docker-compose知识穿插混讲">Docker和docker-compose知识穿插混讲</a><ul><li><a href="/rpi-guide2/#docker-compose的常用管理命令">docker-compose的常用管理命令.</a></li></ul></li><li><a href="/rpi-guide2/#docker命令">Docker命令</a></li><li><a href="/rpi-guide2/#安装nextcloud">安装nextCloud</a><ul><li><a href="/rpi-guide2/#nextcloud的调优">nextCloud的调优</a></li></ul></li><li><a href="/rpi-guide2/#参考列表">参考列表</a></li></ul></div></div> <!----></div></aside></div> <footer class="footer" data-v-1375e54c><p class="footer-sns-links" data-v-1375e54c><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-1375e54c><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-1375e54c data-v-1375e54c><svg class="icon" style="font-size:25px;" data-v-1375e54c data-v-1375e54c><title data-v-1375e54c data-v-1375e54c>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-1375e54c data-v-1375e54c></use></svg></span></a></p> <!----> <p class="footer-text" data-v-1375e54c>Copyright 2018-2020 | Junzhou Liu<br/><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备17043261号</a></p></footer></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.f3764dfb.js" defer></script><script src="/assets/js/9.21ff3301.js" defer></script><script src="/assets/js/4.0bcc247d.js" defer></script>
+  </body>
+</html>

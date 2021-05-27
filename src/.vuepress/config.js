@@ -28,7 +28,7 @@ module.exports = {
 
 
   // 网站 Title
-  title: 'Junzhou Liu',
+  title: '绝知此事要躬行',
 
   // 网站描述
   description: 'Happy Coding',
@@ -101,7 +101,7 @@ module.exports = {
     footer: {
       poweredBy: false,
       poweredByTheme: false,
-      custom: 'Copyright 2018-2020 | Junzhou Liu<br/><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备17043261号</a>',
+      custom: 'Copyright 2018-2020 | Junzhou Liu<br/><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备17043261号-1</a>',
     },
 
     // 顶部导航栏内容
